@@ -8,57 +8,109 @@
 
 #import "ViewController.h"
 
+@interface ViewController ()
+
+@property (nonatomic, retain) UIView *targetView;
+
+@end
+
 @implementation ViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+@synthesize targetView;
+
+- (void)dealloc {
+  [self setTargetView:nil];
+  [super dealloc];
 }
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+  [super viewDidLoad];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+#pragma mark - animation method
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
+- (void)addTrashAnimationTo:(UIView *)aView
+                    toPoint:(CGPoint)point
+                   duration:(CGFloat)duration
+                   delegate:(id)delegate {
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
+  //// 1st Animation - Transform
+  CABasicAnimation* transform_animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+  transform_animation.duration = duration;
+  transform_animation.autoreverses = NO;
+  [transform_animation setDelegate:delegate];
+  [transform_animation setTimingFunction:[CAMediaTimingFunction 
+                                          functionWithName:kCAMediaTimingFunctionEaseIn]];
+  CATransform3D transform = CATransform3DIdentity;
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-      return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-  } else {
-      return YES;
+  // from 
+  transform_animation.fromValue = [NSValue valueWithCATransform3D:transform];	
+    
+  // to
+  // - rotate
+  {
+    CATransform3D ntransform = CATransform3DMakeRotation(-0.5, 0, 0, 1.0f);
+    transform = ntransform;
   }
+  // - scale
+  CGFloat scale = 0.1f;
+  {
+    CATransform3D ntransform = CATransform3DMakeScale(scale, scale, scale);
+    transform = CATransform3DConcat(transform, ntransform);
+  }
+  // - transition
+  {
+    CGRect rect = aView.frame;
+    CATransform3D ntransform =
+    CATransform3DMakeTranslation(point.x - rect.size.width/2 + (rect.size.width/2 * 0.1), 
+                                 point.y - rect.size.height/2 + (rect.size.height/2 * 0.1),
+                                 0.0f);
+    transform = CATransform3DConcat(transform, ntransform);
+  }
+  
+  transform_animation.toValue = [NSValue valueWithCATransform3D:transform];
+  [aView.layer removeAllAnimations];
+  [aView.layer addAnimation:transform_animation forKey:@"trashingAnimation"];
+
+  //// 2nd Animation - Opacity
+  {
+    CABasicAnimation* opacity_animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    opacity_animation.duration = duration; 
+    opacity_animation.autoreverses = NO;
+    [opacity_animation setTimingFunction:[CAMediaTimingFunction 
+                                          functionWithName:kCAMediaTimingFunctionEaseIn]];
+    opacity_animation.fromValue = [NSNumber numberWithFloat:0.7f];
+    opacity_animation.toValue = [NSNumber numberWithFloat:0.0f];	
+    [aView.layer addAnimation:opacity_animation forKey:@"trashingAnimation_opaque"];
+  }
+}
+
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+  [self.targetView setAlpha:0.0f];
+}
+
+
+#pragma mark - tap handling
+
+- (IBAction)createButtonTapped:(UIButton *)sender {
+  [self.targetView removeFromSuperview];
+  
+  UIView *aview = [[UIView alloc] initWithFrame:CGRectMake(20, 80, 280, 44)];
+  [aview setBackgroundColor:[UIColor blueColor]];
+  [self setTargetView:aview];
+  [self.view addSubview:aview];
+  [aview release];
+}
+
+- (IBAction)trashButtonTapped:(UIButton *)sender {
+
+  [self addTrashAnimationTo:self.targetView
+                    toPoint:CGPointMake(20, 320)
+                   duration:5.0f
+                   delegate:self];
 }
 
 @end

@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+ @private
+  UIView *targetView;
+}
+
+- (IBAction)createButtonTapped:(UIButton *)sender;
+- (IBAction)trashButtonTapped:(UIButton *)sender;
 
 @end

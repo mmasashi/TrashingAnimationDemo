@@ -16,6 +16,7 @@
 		217FF808147FE2980074C029 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217FF807147FE2980074C029 /* ViewController.m */; };
 		217FF80B147FE2980074C029 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217FF809147FE2980074C029 /* ViewController_iPhone.xib */; };
 		217FF80E147FE2980074C029 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 217FF80C147FE2980074C029 /* ViewController_iPad.xib */; };
+		217FF815147FE7260074C029 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217FF814147FE7260074C029 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,16 +24,17 @@
 		217FF7F4147FE2980074C029 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		217FF7F6147FE2980074C029 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		217FF7F8147FE2980074C029 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		217FF7FC147FE2980074C029 /* TrashingAnimationDemo-Info.plist */ = {isa = PBXFileReference; path = "TrashingAnimationDemo-Info.plist"; sourceTree = "<group>"; };
+		217FF7FC147FE2980074C029 /* TrashingAnimationDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TrashingAnimationDemo-Info.plist"; sourceTree = "<group>"; };
 		217FF7FE147FE2980074C029 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		217FF800147FE2980074C029 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		217FF802147FE2980074C029 /* TrashingAnimationDemo-Prefix.pch */ = {isa = PBXFileReference; path = "TrashingAnimationDemo-Prefix.pch"; sourceTree = "<group>"; };
-		217FF803147FE2980074C029 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		217FF802147FE2980074C029 /* TrashingAnimationDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrashingAnimationDemo-Prefix.pch"; sourceTree = "<group>"; };
+		217FF803147FE2980074C029 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		217FF804147FE2980074C029 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		217FF806147FE2980074C029 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		217FF806147FE2980074C029 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		217FF807147FE2980074C029 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		217FF80A147FE2980074C029 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		217FF80D147FE2980074C029 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		217FF814147FE7260074C029 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217FF815147FE7260074C029 /* QuartzCore.framework in Frameworks */,
 				217FF7F5147FE2980074C029 /* UIKit.framework in Frameworks */,
 				217FF7F7147FE2980074C029 /* Foundation.framework in Frameworks */,
 				217FF7F9147FE2980074C029 /* CoreGraphics.framework in Frameworks */,
@@ -52,6 +55,7 @@
 		217FF7E5147FE2980074C029 = {
 			isa = PBXGroup;
 			children = (
+				217FF814147FE7260074C029 /* QuartzCore.framework */,
 				217FF7FA147FE2980074C029 /* TrashingAnimationDemo */,
 				217FF7F3147FE2980074C029 /* Frameworks */,
 				217FF7F1147FE2980074C029 /* Products */,
